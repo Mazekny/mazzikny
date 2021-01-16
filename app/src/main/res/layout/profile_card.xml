@@ -4,7 +4,6 @@
     android:layout_height="wrap_content"
     app:cardPreventCornerOverlap="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/texturedwhite"
     app:cardCornerRadius="4dp">
 
     <RelativeLayout

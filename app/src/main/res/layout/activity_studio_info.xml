@@ -32,7 +32,6 @@
             android:layout_centerHorizontal="true"
             android:textSize="25sp"
             android:autoLink="phone"
-            android:background="@drawable/texturedwhite"
             android:linksClickable="true"/>
 
         <TextView
