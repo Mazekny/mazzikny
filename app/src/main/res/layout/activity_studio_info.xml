@@ -20,7 +20,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:textSize="30sp"
-            android:text="Name"/>
+            android:text="Name"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/number"
@@ -31,6 +32,7 @@
             android:layout_centerHorizontal="true"
             android:textSize="25sp"
             android:autoLink="phone"
+            android:background="@drawable/texturedwhite"
             android:linksClickable="true"/>
 
         <TextView
@@ -47,12 +49,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/info">
+        android:layout_below="@+id/info"
+        android:id="@+id/info2">
 
-        <ListView
+        <GridView
+            android:numColumns="1"
             android:id="@+id/list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -62,6 +66,7 @@
         android:clickable="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
+        app:backgroundTint= "@color/gradStart"
         android:layout_margin="16dp"
         app:srcCompat="@android:drawable/ic_dialog_map"
         android:focusable="true" />

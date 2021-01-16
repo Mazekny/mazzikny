@@ -24,7 +24,6 @@
     <string name="menu_slideshow">Slideshow</string>
 
 
-
     <string-array name="Spinner_items">
         <item>  Select Governate... </item>
         <item>  Alexandria Governorate </item>
@@ -57,14 +56,12 @@
     </string-array>
 
 
-
     <string name="demo">Demo</string>
 
     <string name="facebook"><a href="https://www.facebook.com/marwan.tarek.9">Click Here for Facebook account</a></string>
     <string name="twitter"><a href="https://twitter.com/explore">Click Here for Twitter account</a></string>
     <string name="API_KEY">AIzaSyCOrHHgxzOH0HEiNsXXEgxW9mJlx6mmilw</string>
     <string name="title_activity_maps">Map</string>
-
 
 
 </resources>
