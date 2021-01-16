@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/texturedwhite"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".SignUp">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/logo"
+                android:layout_marginStart="130dp" />
+        <TextView
+            android:id="@+id/createAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="Create Your Account:"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
+            android:textSize="35dp" />
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/username"
+                android:layout_centerHorizontal="true"
+                android:hint="Enter Username" />
+            <EditText
+                android:layout_width="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/email"
+                android:layout_centerHorizontal="true"
+                android:hint="Enter Email" />
+            <EditText
+                android:layout_width="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/password"
+                android:layout_centerHorizontal="true"
+                android:hint="Enter Password" />
+            <EditText
+                android:layout_width="200dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/PasswordAgain"
+                android:layout_centerHorizontal="true"
+                android:hint="Enter Password Again" />
+            <EditText
+                android:layout_width="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:id="@+id/PhoneNumber"
+                android:layout_centerHorizontal="true"
+                android:hint="Enter Phone Number"/>
+
+            <Spinner
+                android:id="@+id/countrySpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:entries="@array/Spinner_items"/>
+
+            <EditText
+                android:layout_width="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/ExperienceYears"
+                android:layout_centerHorizontal="true"
+                android:hint="Experience Years"
+                android:inputType="number"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/videoURL"
+            android:layout_centerHorizontal="true"
+            android:hint="Your video URL"
+            android:inputType="number"/>
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:id="@+id/gender"
+                android:layout_marginLeft="15dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender: "
+                    android:textSize="18dp"
+                />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Male"
+                    android:textSize="15dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Female"
+                    android:textSize="15dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Others"
+                    android:textSize="15dp"/>
+            </RadioGroup>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp"
+                android:id="@+id/level"
+                android:layout_marginLeft="15dp">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Level: "
+                    android:textSize="18dp"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Beginner"
+                    android:textSize="15dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Intermediate"
+                    android:textSize="15dp"/>
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Professional"
+                    android:textSize="15dp"/>
+
+            </RadioGroup>
+
+
+        <Button
+            android:layout_width="95dp"
+            android:id="@+id/signup"
+            android:layout_height="50dp"
+            android:layout_marginTop="10dp"
+            android:text="Sign Up"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="150dp"
+            app:backgroundTint="@color/black"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Already have an account?"
+                android:textSize="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="127dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clickhere"
+                android:text="click here"
+                android:textSize="12dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="140dp"
+                app:backgroundTint="@color/black"/>
+    </LinearLayout>
+
+    </ScrollView>
+

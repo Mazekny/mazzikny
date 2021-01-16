@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Mazzikny</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="title_activity_connections">ConnectionsActivity</string>
+    <string name="tab_text_1">My Connections</string>
+    <string name="tab_text_2">Search</string>
+    <string name="search_hint">Search For Connections</string>
+    <string name="title_activity_my_connections">MyConnections</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="title_activity_test">test</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+
+
+    <string-array name="Spinner_items">
+        <item>  Select Governate... </item>
+        <item>  Alexandria Governorate </item>
+        <item> Aswan Governorate </item>
+        <item> Asyut Governorate </item>
+        <item> Beheira Governorate</item>
+        <item>  Beni Suef Governorate </item>
+        <item>  Cairo Governorate </item>
+        <item>  Dakahlia Governorate </item>
+        <item>  Damietta Governorate </item>
+        <item>  Faiyum Governorate </item>
+        <item>  Gharbia Governorate </item>
+        <item>  Giza Governorate </item>
+        <item>  Ismailia Governorate </item>
+        <item>  Kafr El Sheikh Governorate </item>
+        <item>  Luxor Governorate </item>
+        <item>  Matruh Governorate </item>
+        <item>  Minya Governorate </item>
+        <item>  Monufia Governorate </item>
+        <item>  New Valley Governorate </item>
+        <item>  North Sinai Governorate </item>
+        <item>  Port Said Governorate </item>
+        <item>  Qalyubia Governorate </item>
+        <item>  Qena Governorate </item>
+        <item> Red Sea Governorate </item>
+        <item> Sharqia Governorate </item>
+        <item> Sohag Governorate </item>
+        <item> South Sinai Governorate </item>
+        <item> Suez Governorate </item>
+    </string-array>
+
+
+
+    <string name="demo">Demo</string>
+
+    <string name="facebook"><a href="https://www.facebook.com/marwan.tarek.9">Click Here for Facebook account</a></string>
+    <string name="twitter"><a href="https://twitter.com/explore">Click Here for Twitter account</a></string>
+    <string name="API_KEY">AIzaSyCOrHHgxzOH0HEiNsXXEgxW9mJlx6mmilw</string>
+    <string name="title_activity_maps">Map</string>
+
+
+
+</resources>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/texturedwhite"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+    <ImageView
+        android:layout_width="200dp"
+        android:id="@+id/logoPic"
+        android:layout_height="199dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="75dp"
+        android:src="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logoPic"
+        android:layout_marginTop="19dp"
+        android:layout_centerHorizontal="true"
+        android:hint="Enter Username" />
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/username"
+        android:hint="Enter Password"
+        ></EditText>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/login"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="160dp"
+        app:backgroundTint="@color/black"
+        android:text="Login"
+        android:layout_below="@+id/password"
+        />
+    <TextView
+        android:id="@+id/not_a_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/login"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:text="Not a member?" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signup"
+        android:layout_centerHorizontal="true"
+        app:backgroundTint="@color/black"
+        android:text="Sign up"
+        android:layout_below="@+id/not_a_member"
+        />
+
+</RelativeLayout>
