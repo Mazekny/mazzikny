@@ -20,7 +20,7 @@ public class WelcomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i= new Intent(WelcomeActivity.this, HomePage.class);
+                Intent i= new Intent(WelcomeActivity.this, home_page.class);
                 startActivity(i);
 
                 finish();

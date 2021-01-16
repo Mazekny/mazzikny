@@ -24,7 +24,7 @@ public class home_page extends AppCompatActivity {
         GridView grid = (GridView) findViewById(R.id.homeGrid);
         homeList.add(new Item("Profile",R.drawable.profile2));
         homeList.add(new Item("Search",R.drawable.search2));
-        homeList.add(new Item("Store",R.drawable.selectinstrument));
+//        homeList.add(new Item("Store",R.drawable.selectinstrument));
         homeList.add(new Item("Studio",R.drawable.studio2));
         homeList.add(new Item("E-Learning",R.drawable.learn2));
         homeList.add(new Item("Store",R.drawable.store));
@@ -44,6 +44,14 @@ public class home_page extends AppCompatActivity {
                 }
                 else if(item.getbuttonName().equals("Studio")) {
                     Intent intent = new Intent(getApplicationContext(), studio.class);
+                    startActivity(intent);
+                }
+                else if (item.getbuttonName().equals("Store")) {
+                    Intent intent = new Intent(getApplicationContext(), Inst_list.class);
+                    startActivity(intent);
+                }
+                else if (item.getbuttonName().equals("Search")) {
+                    Intent intent = new Intent(getApplicationContext(), MyConnections.class);
                     startActivity(intent);
                 }
 

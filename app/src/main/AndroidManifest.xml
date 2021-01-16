@@ -10,10 +10,10 @@
 
 
     <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/nosloganlogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/nosloganlogo"
+        android:allowBackup="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mazzikny" >
         <activity android:name=".Profile_temp" />
@@ -26,16 +26,15 @@
 
 
         <activity android:name=".SignUp"> </activity>
-        <activity android:name=".HomePage" />
         <activity
             android:name=".WelcomeActivity"
             android:parentActivityName=".LoginActivity" />
         <activity android:name=".Splashscreen">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".LoginActivity">
         </activity>
@@ -53,11 +52,11 @@
     </activity>
 
     <activity android:name=".home_page" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+<!--        <intent-filter>-->
+<!--            <action android:name="android.intent.action.MAIN" />-->
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+<!--            <category android:name="android.intent.category.LAUNCHER" />-->
+<!--        </intent-filter>-->
     </activity>
     <meta-data
         android:name="com.google.android.geo.API_KEY"
@@ -80,8 +79,8 @@
             android:value=".home_page" />
     </activity>
 
-
-
+        <activity android:name=".inst_view"></activity>
+        <activity android:name=".Inst_list" />
 
 
     </application>
