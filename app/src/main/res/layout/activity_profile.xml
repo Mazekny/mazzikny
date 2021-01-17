@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/texturedwhite"
     tools:context=".profile">
 
 
@@ -70,14 +71,14 @@
             android:textColor="@color/colorPrimary"
             android:textSize="18sp" />
 
-<!--        <ImageButton-->
-<!--            android:id="@+id/imageButton"-->
-<!--            android:layout_width="34dp"-->
-<!--            android:layout_height="34dp"-->
-<!--            android:background="@drawable/grad"-->
-<!--            android:clickable="true"-->
-<!--            app:srcCompat="@drawable/abc_vector_test"-->
-<!--            android:focusable="true" />-->
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/imageButton"-->
+        <!--            android:layout_width="34dp"-->
+        <!--            android:layout_height="34dp"-->
+        <!--            android:background="@drawable/grad"-->
+        <!--            android:clickable="true"-->
+        <!--            app:srcCompat="@drawable/abc_vector_test"-->
+        <!--            android:focusable="true" />-->
 
     </RelativeLayout>
 
@@ -180,6 +181,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
@@ -207,6 +209,37 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="@string/facebook"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/colorPrimary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Instrument"
+                    android:textColor="@color/cardview_dark_background"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/userInstrument"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Piano"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -291,7 +324,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="16dp"
-        app:backgroundTint= "@color/gradStart"
+        app:backgroundTint="@color/gradStart"
         app:srcCompat="@android:drawable/ic_media_play"
         android:focusable="true" />
 

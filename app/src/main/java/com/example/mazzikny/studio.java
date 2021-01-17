@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class studio extends AppCompatActivity {
@@ -46,30 +48,38 @@ public class studio extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studio);
-//        Objects.requireNonNull(getActionBar()).setDisplayHomeAsUpEnabled(true);
         ListView listView = (ListView) findViewById(R.id.studioView);
 
         final RequestQueue queue = Volley.newRequestQueue(this);
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 3);
-        }else {
-                loc = locationManager.getLastKnownLocation(locationManager.getProviders(true).get(0));
+            ActivityCompat.requestPermissions(
+                this,
+                new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                3
+            );
+        } else {
+            List<String> providers = locationManager.getProviders(true);
+            for (String provider: providers) {
+                Location current = locationManager.getLastKnownLocation(provider);
+                Log.d("PROVIDER", provider);
+                if (current != null) {
+                    loc = current;
+                }
             }
+        }
 
             assert loc != null;
             lat = loc.getLatitude();
             lon = loc.getLongitude();
-            checkAppIDURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+ lat + "," + lon + "&radius=5000&keyword=music&key=AIzaSyCOrHHgxzOH0HEiNsXXEgxW9mJlx6mmilw";
+            checkAppIDURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+ lat + "," + lon + "&radius=10000&keyword=music&key=AIzaSyCOrHHgxzOH0HEiNsXXEgxW9mJlx6mmilw";
             StringRequest getPlace = new StringRequest(Request.Method.GET, //Make sure to use .GET if it's  a get request.
                 checkAppIDURL,
                 new Response.Listener<String>() //This is an in-lined function that waits for a response from the server running asynchronously- you do not need to set up the async yourself.
                 {
                     @Override
                     public void onResponse(String response) {
-                        System.out.println("Connected");
                         try {
                             JSONObject obj = new JSONObject(response);
                             JSONArray result = obj.getJSONArray("results");

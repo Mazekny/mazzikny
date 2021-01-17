@@ -15,7 +15,11 @@
         android:roundIcon="@drawable/nosloganlogo"
         android:supportsRtl="true"
         android:theme="@style/Theme.Mazzikny">
-        <activity android:name=".userProfile"></activity>
+        <activity android:name=".userProfile">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SearchConnections" />
+        </activity>
         <activity android:name=".SearchConnections">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

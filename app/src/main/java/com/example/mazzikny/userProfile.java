@@ -32,6 +32,7 @@ public class userProfile extends AppCompatActivity {
     TextView exp;
     TextView address;
     TextView name;
+    TextView userProf;
 
 
     @Override
@@ -49,6 +50,7 @@ public class userProfile extends AppCompatActivity {
         exp = (TextView) findViewById(R.id.userExperince);
         address = (TextView) findViewById(R.id.userLoc);
         name = (TextView) findViewById(R.id.userName);
+        userProf=findViewById(R.id.userExpert);
 
 
         if(i.getExtras() != null) {
@@ -62,6 +64,7 @@ public class userProfile extends AppCompatActivity {
             exp.setText(profileCard.getExp());
             address.setText(profileCard.getAddress());
             name.setText(profileCard.getUserName());
+            userProf.setText(profileCard.getUserProf());
         }
 
         twitter.setMovementMethod(LinkMovementMethod.getInstance());
@@ -73,7 +76,7 @@ public class userProfile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(userProfile.this, video_player.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("title", "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4");
+                bundle.putString("title", "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4");
                 i.putExtras(bundle);
                 startActivity(i);
             }

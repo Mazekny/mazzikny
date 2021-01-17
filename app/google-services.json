@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1051210870341",
+    "project_id": "mazekny",
+    "storage_bucket": "mazekny.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1051210870341:android:daae0e23eb619dd63b7d2c",
+        "android_client_info": {
+          "package_name": "com.example.mazzikny"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1051210870341-i6dgaoculn1hek8l8v6328vqvojbp43m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOdvibbyp9D1arnLOMQaZzDfMfBZJQT1c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1051210870341-i6dgaoculn1hek8l8v6328vqvojbp43m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

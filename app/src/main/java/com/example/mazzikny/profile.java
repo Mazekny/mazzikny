@@ -63,7 +63,7 @@ public class profile extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(profile.this, video_player.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("title", "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4");
+                bundle.putString("title", "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4");
                 i.putExtras(bundle);
                 startActivity(i);
             }
