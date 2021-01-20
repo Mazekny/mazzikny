@@ -6,15 +6,17 @@ public class ItemsModel implements Serializable {
     private String name;
     private String price;
     private String desc;
-    private String cont;
+    private String seller;
+    private String id;
     private int image;
 
-    public ItemsModel(String name, String price, String desc, String cont, int image) {
+    public ItemsModel(String name, String price, String desc, String seller, String id, int image) {
         this.name = name;
         this.price = price;
-        this.image = image;
         this.desc = desc;
-        this.cont = cont;
+        this.seller = seller;
+        this.id = id;
+        this.image = image;
     }
 
     public String getName() {
@@ -41,12 +43,20 @@ public class ItemsModel implements Serializable {
         this.desc = desc;
     }
 
-    public String getCont() {
-        return cont;
+    public String getSeller() {
+        return seller;
     }
 
-    public void setCont(String cont) {
-        this.cont = cont;
+    public void setSeller(String seller) {
+        this.seller = seller;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getImage() {

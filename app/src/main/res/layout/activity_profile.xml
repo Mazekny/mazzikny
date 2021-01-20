@@ -311,8 +311,6 @@
                     android:background="@color/colorPrimary" />
 
             </LinearLayout>
-
-
         </LinearLayout>
     </ScrollView>
 

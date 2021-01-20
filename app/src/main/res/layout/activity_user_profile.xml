@@ -44,7 +44,7 @@
             android:layout_below="@+id/profileImg"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
-            android:text="Marwan El-Toukhy"
+            android:text="Name"
             android:textColor="@color/white"
             android:textSize="32sp" />
 
@@ -55,19 +55,18 @@
             android:layout_below="@+id/userName"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif-light"
-            android:text="Sheikh Zayed, Egypt"
-            android:textColor="@color/colorPrimary"
+            android:text="Address"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
-        <!--        <ImageButton-->
-        <!--            android:id="@+id/imageButton"-->
-        <!--            android:layout_width="34dp"-->
-        <!--            android:layout_height="34dp"-->
-        <!--            android:background="@drawable/grad"-->
-        <!--            android:clickable="true"-->
-        <!--            app:srcCompat="@drawable/abc_vector_test"-->
-        <!--            android:focusable="true" />-->
-
+        <Button
+            android:id="@+id/connect_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            android:text="Connect"
+            android:textSize="15dp" />
     </RelativeLayout>
 
     <ScrollView

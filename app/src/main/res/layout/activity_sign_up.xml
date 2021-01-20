@@ -33,19 +33,21 @@
             android:textSize="35dp" />
 
             <EditText
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/username"
+                android:id="@+id/name"
+                android:inputType="text"
                 android:layout_centerHorizontal="true"
-                android:hint="Enter Username" />
+                android:hint="Enter First and Last name" />
             <EditText
                 android:layout_width="200dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/email"
+                android:inputType="textEmailAddress"
                 android:layout_centerHorizontal="true"
                 android:hint="Enter Email" />
             <EditText
@@ -54,16 +56,17 @@
                 android:layout_marginLeft="15dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/password"
+                android:inputType="textPassword"
                 android:layout_centerHorizontal="true"
                 android:hint="Enter Password" />
-            <EditText
-                android:layout_width="200dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="15dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/PasswordAgain"
-                android:layout_centerHorizontal="true"
-                android:hint="Enter Password Again" />
+<!--            <EditText-->
+<!--                android:layout_width="200dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/PasswordAgain"-->
+<!--                android:layout_centerHorizontal="true"-->
+<!--                android:hint="Enter Password Again" />-->
             <EditText
                 android:layout_width="200dp"
                 android:layout_marginTop="20dp"
@@ -74,15 +77,32 @@
                 android:layout_centerHorizontal="true"
                 android:hint="Enter Phone Number"/>
 
-            <Spinner
-                android:id="@+id/countrySpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="15dp"
-                android:entries="@array/Spinner_items"/>
+        <EditText
+            android:layout_width="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/location"
+            android:layout_centerHorizontal="true"
+            android:hint="Enter Location"/>
 
+<!--            <Spinner-->
+<!--                android:id="@+id/countrySpinner"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:layout_marginLeft="15dp"-->
+<!--                android:entries="@array/Spinner_items"/>-->
+        <EditText
+            android:layout_width="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/Instrument"
+            android:layout_centerHorizontal="true"
+            android:hint="Instrument " />
             <EditText
+
                 android:layout_width="200dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"
@@ -91,6 +111,26 @@
                 android:layout_centerHorizontal="true"
                 android:hint="Experience Years"
                 android:inputType="number"/>
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/facebook"
+            android:layout_centerHorizontal="true"
+            android:hint="Your Facebook URL" />
+<!--        Email, name, facebook, twitter, phone_number, instrument, exp, address, prof-->
+
+        <EditText
+            android:layout_width="200dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/twitter"
+            android:layout_centerHorizontal="true"
+            android:hint="Your Twitter URL" />
+
         <EditText
             android:layout_width="200dp"
             android:layout_marginTop="20dp"
@@ -98,40 +138,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/videoURL"
             android:layout_centerHorizontal="true"
-            android:hint="Your video URL"
-            android:inputType="number"/>
+            android:hint="Your video URL" />
 
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:layout_marginTop="20dp"
-                android:id="@+id/gender"
-                android:layout_marginLeft="15dp">
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gender: "
-                    android:textSize="18dp"
-                />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Male"
-                    android:textSize="15dp"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Female"
-                    android:textSize="15dp"/>
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Others"
-                    android:textSize="15dp"/>
-            </RadioGroup>
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
@@ -150,17 +158,21 @@
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/beginner"
+                    android:checked="true"
                     android:text="Beginner"
                     android:textSize="15dp"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/intermediate"
                     android:text="Intermediate"
                     android:textSize="15dp"/>
                 <RadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Professional"
+                    android:id="@+id/professional"
                     android:textSize="15dp"/>
 
             </RadioGroup>

@@ -25,12 +25,14 @@ public class home_page extends AppCompatActivity {
 
         GridView grid = (GridView) findViewById(R.id.homeGrid);
         homeList.add(new Item("Profile",R.drawable.profile2));
-        homeList.add(new Item("Search",R.drawable.search2));
+        homeList.add(new Item("Search For Musicians",R.drawable.search2));
+        homeList.add(new Item("My Connections",R.drawable.friends));
+        homeList.add(new Item("Requests",R.drawable.notification));
         homeList.add(new Item("Store",R.drawable.store));
         homeList.add(new Item("Studio",R.drawable.studio2));
-        homeList.add(new Item("E-Learning",R.drawable.learn2));
+//        homeList.add(new Item("E-Learning",R.drawable.learn2));
         homeList.add(new Item("About",R.drawable.about));
-        homeList.add(new Item("Settings",R.drawable.settings2));
+//        homeList.add(new Item("Settings",R.drawable.settings2));
         homeList.add(new Item("Sign Out",R.drawable.signout));
 
         myAdapter = new homeAdapter(this, R.layout.home_view_items, homeList);
@@ -52,12 +54,20 @@ public class home_page extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), Inst_list.class);
                     startActivity(intent);
                 }
-                else if (item.getbuttonName().equals("Search")) {
-                    Intent intent = new Intent(getApplicationContext(), MyConnections.class);
+                else if (item.getbuttonName().equals("Search For Musicians")) {
+                    Intent intent = new Intent(getApplicationContext(), SearchConnections.class);
                     startActivity(intent);
                 }
                 else if (item.getbuttonName().equals("Sign Out")) {
                     Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+                else if (item.getbuttonName().equals("My Connections")) {
+                    Intent intent = new Intent(getApplicationContext(), MyConnections.class);
+                    startActivity(intent);
+                }
+                else if (item.getbuttonName().equals("Requests")) {
+                    Intent intent = new Intent(getApplicationContext(), RequestsActivity.class);
                     startActivity(intent);
                 }
                 else if (item.getbuttonName().equals("About")){

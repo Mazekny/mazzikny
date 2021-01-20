@@ -20,6 +20,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,11 +37,13 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Inst_list extends AppCompatActivity {
+public class user_items extends AppCompatActivity {
+
+    private static final String TAG = "AuthenticatedAddition";
 
     GridView gridView;
 
-//    int images[]={R.drawable.clarinet};//,R.drawable.drum,R.drawable.flute,R.drawable.guitar,R.drawable.piano,R.drawable.trumpet};
+    int images[]={R.drawable.clarinet};//,R.drawable.drum,R.drawable.flute,R.drawable.guitar,R.drawable.piano,R.drawable.trumpet};
 
     List<ItemsModel>itemslist=new ArrayList<>();
 
@@ -50,34 +53,18 @@ public class Inst_list extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_inst_list);
+        setContentView(R.layout.activity_user_items);
         user = FirebaseAuth.getInstance().getCurrentUser();
 
-        Button button = findViewById(R.id.button);
-
-        button.setOnClickListener(view->{
-
-            startActivity(new Intent(Inst_list.this, sell_item.class));
-
-        });
-
-        Button button1=findViewById(R.id.button1);
-
-        button1.setOnClickListener(view->{
-
-            startActivity(new Intent(Inst_list.this, user_items.class));
-
-        });
-
-        RequestQueue queue = Volley.newRequestQueue(Inst_list.this);
+        RequestQueue queue = Volley.newRequestQueue(this);
 
         String url="http://10.0.2.2:3000/store";
 
         //String[] items;//={"Clarinet", "Drums", "Flute", "Guitar", "Piano", "Trumpet"};
         //String prices[];//={"4999 EGP", "9999 EGP", "1499 EGP","3499 EGP","19999 EGP","6999 EGP"};
-       // String desc[];//={"This is a \"Clarinet\"", "This is a \"Drums\"", "This is a \"Flute\"", "This is a \"Guitar\"", "This is a \"Piano\"", "This is a \"Trumpet\""};
-       // String sellers[];//={"Ahmed", "Mohamed", "Omar", "Abdo", "shenawy", "Marwan"};
-       // String ids[];//={"0", "2", "3", "4", "5", "6"};
+        // String desc[];//={"This is a \"Clarinet\"", "This is a \"Drums\"", "This is a \"Flute\"", "This is a \"Guitar\"", "This is a \"Piano\"", "This is a \"Trumpet\""};
+        // String sellers[];//={"Ahmed", "Mohamed", "Omar", "Abdo", "shenawy", "Marwan"};
+        // String ids[];//={"0", "2", "3", "4", "5", "6"};
 
         List<String>items=new ArrayList<>();
         List<String>prices=new ArrayList<>();
@@ -85,21 +72,22 @@ public class Inst_list extends AppCompatActivity {
         List<String>sellers=new ArrayList<>();
         List<String>ids=new ArrayList<>();
 
-            JsonArrayRequest example = new JsonArrayRequest(Request.Method.GET, //Make sure to use .GET if it's  a get request.
-        url,null,
-        new Response.Listener<JSONArray>() //This is an in-lined function that waits for a response from the server running asynchronously- you do not need to set up the async yourself.
-        {
-            @Override
-            public void onResponse(JSONArray response)
-            {
-                Log.e("Rest Response", response.toString());
-                for (int i=0; i < response.length(); i++)
+        JsonArrayRequest example = new JsonArrayRequest(Request.Method.GET, //Make sure to use .GET if it's  a get request.
+                url,null,
+                new Response.Listener<JSONArray>() //This is an in-lined function that waits for a response from the server running asynchronously- you do not need to set up the async yourself.
+                {
+                    @Override
+                    public void onResponse(JSONArray response)
+                    {
+                        Log.e("Rest Response", response.toString());
+                        for (int i=0; i < response.length(); i++)
                         {
                             Log.e("oops", "oh yeah");
                             try {
                                 JSONObject oneObject = response.getJSONObject(i);
                                 // Pulling items from the array
-                                if(!user.getUid().equals(oneObject.getString("Seller"))) {
+                                if(user.getUid().equals(oneObject.getString("Seller"))){
+    //                                Log.e("hello", user.getUid());
                                     items.add(oneObject.getString("item_name"));
                                     prices.add(oneObject.getString("price"));
                                     desc.add(oneObject.getString("Description"));
@@ -112,37 +100,37 @@ public class Inst_list extends AppCompatActivity {
                                 Log.e("oops", e.toString());
                             }
                         }
-                adapter = new MainAdapter(Inst_list.this, itemslist);
-                gridView = findViewById(R.id.grid);
+                        adapter = new MainAdapter(user_items.this, itemslist);
+                        gridView = findViewById(R.id.grid);
 
-                for(int j=0; j<items.size();j++)
-                {
-                    ItemsModel itemsModel=new ItemsModel(items.get(j), prices.get(j), desc.get(j), sellers.get(j), ids.get(j), R.drawable.clarinet);
-                    itemslist.add(itemsModel);
-                }
+                        for(int j=0; j<items.size();j++)
+                        {
+                            ItemsModel itemsModel=new ItemsModel(items.get(j), prices.get(j), desc.get(j), sellers.get(j), ids.get(j), R.drawable.clarinet);
+                            itemslist.add(itemsModel);
+                        }
 
 
-                gridView.setAdapter(adapter);
+                        gridView.setAdapter(adapter);
 
-                gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        startActivity(new Intent(Inst_list.this, inst_view.class).putExtra("item",itemslist.get(position)));
+                        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                startActivity(new Intent(user_items.this, inst_view_user.class).putExtra("item",itemslist.get(position)));
+                            }
+                        });
                     }
-                });
-            }
 
-        },
-        new Response.ErrorListener() //This is an in-lined function that handles CONNECTION errors. Errors from the SERVER (i.e. wrong username/password, et cetera) should still be handled by Response.Listener.
-        {
-            @Override
-            public void onErrorResponse(VolleyError error)
-            {
-                Log.e("Rest Response", error.toString());
-            }
-        }
-    );
-                        queue.add(example);
+                },
+                new Response.ErrorListener() //This is an in-lined function that handles CONNECTION errors. Errors from the SERVER (i.e. wrong username/password, et cetera) should still be handled by Response.Listener.
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Log.e("Rest Response", error.toString());
+                    }
+                }
+        );
+        queue.add(example);
     }
 
 
@@ -189,7 +177,7 @@ public class Inst_list extends AppCompatActivity {
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(Inst_list.this, inst_view.class).putExtra("item",itemsModelListfiltered.get(position)));
+                    startActivity(new Intent(user_items.this, inst_view_user.class).putExtra("item",itemsModelListfiltered.get(position)));
                 }
             });
 
@@ -273,6 +261,7 @@ public class Inst_list extends AppCompatActivity {
         }
         return true;
     }
+
 
 
 }

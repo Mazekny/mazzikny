@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,25 +16,46 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class SearchConnections extends AppCompatActivity {
+    private static final String TAG = "AuthenticatedAddition";
     private ProfileListAdapter adapter;
     private ArrayList<ProfileCard> exampleList;
     private RecyclerView recyclerView;
     private TextView textView;
+    FirebaseUser user;
+
+    private final String apiURL = "http://10.0.2.2:3000/getAllUsers";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_connections);
+        user = FirebaseAuth.getInstance().getCurrentUser();
 
         textView = findViewById(R.id.textView3);
 
-        exampleList = new ArrayList<>();
-        exampleList.add(new ProfileCard(R.drawable.dp1, "Ahmed", "Guitarist", "Professional", "www.facebook.com", "www.twitter.com", "mohamed_elnaggar@aucegypt.edu", "01123481729", "5th District, Cairo", "5 Years"));
-        exampleList.add(new ProfileCard(R.drawable.dp2, "Mohamed", "Pianist", "Beginner", "www.facebook.com", "www.twitter.com", "mohamed_elnaggar@aucegypt.edu", "01123481729", "5th District, Cairo", "5 Years"));
-        exampleList.add(new ProfileCard(R.drawable.dp3, "Omar", "Drummer", "Expert", "www.facebook.com", "www.twitter.com", "mohamed_elnaggar@aucegypt.edu", "01123481729", "5th District, Cairo", "5 Years"));
-
+//        new getAllUsers().execute(apiURL);
+        try {
+            exampleList = new getAllUsers().execute(apiURL).get();
+        } catch (ExecutionException | InterruptedException e) {
+            e.printStackTrace();
+        }
 
         recyclerView = findViewById(R.id.connections_list);
         recyclerView.setHasFixedSize(true);
@@ -50,7 +73,6 @@ public class SearchConnections extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
@@ -104,4 +126,50 @@ public class SearchConnections extends AppCompatActivity {
         return true;
     }
 
+
+
+    private class getAllUsers extends AsyncTask<String, Void, ArrayList<ProfileCard>>
+    {
+        HttpURLConnection http;
+        JSONArray apiIn;
+        JSONObject msg;
+        StringBuffer consoleOut = new StringBuffer();
+        URL url;
+        ArrayList<ProfileCard> list = new ArrayList<>();
+
+        @Override
+        protected ArrayList<ProfileCard> doInBackground(String... strings) {
+            try {
+                url = new URL(strings[0]);
+                http = (HttpURLConnection) url.openConnection();
+                http.setRequestMethod("GET");
+                http.connect();
+
+                if (http.getResponseCode() == 200)
+                {
+                    InputStream stream = new BufferedInputStream(http.getInputStream());
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
+                    StringBuilder apiStream = new StringBuilder();
+                    String inputString;
+
+                    while ((inputString = bufferedReader.readLine()) != null)
+                    {
+                        apiStream.append(inputString);
+                    }
+                    apiIn = new JSONArray(apiStream.toString());
+                    if(apiIn.length() > 0)
+                    {
+                        for (int i = 0; i < apiIn.length(); i++)
+                        {
+                            msg = apiIn.getJSONObject(i);
+                            list.add(new ProfileCard(msg.getString("id"), R.drawable.dp1, msg.getString("name"), msg.getString("instrument"), msg.getString("prof"), msg.getString("facebook"), msg.getString("twitter"), msg.getString("email"), msg.getString("phone_number"), msg.getString("address"), msg.getString("exp"), msg.getString("rating")));
+                        }
+                    }
+                }
+            } catch (IOException | JSONException e) {
+                e.printStackTrace();
+            }
+            return list;
+        }
+    }
 }

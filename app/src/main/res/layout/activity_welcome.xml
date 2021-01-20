@@ -18,19 +18,23 @@
         android:layout_marginLeft="100dp"
         android:layout_marginTop="1in"
         android:fontFamily="sans-serif-thin"
-        android:text="Welcome,"
+        android:text="Welcome to Mazzikny!"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
         android:textSize="50dp" />
-    <TextView
-        android:id="@+id/usernametext"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="100dp"
-        android:layout_below="@+id/welcome"
-        android:fontFamily="sans-serif-thin"
-        android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"
-        android:textSize="50dp" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/prof"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginLeft="100dp"-->
+<!--        android:layout_marginTop="400dp"-->
+<!--        android:fontFamily="sans-serif-thin"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Widget.DropDownItem"-->
+<!--        android:textSize="50dp" />-->
+
+
+
 
     <ImageView
         android:layout_width="150dp"

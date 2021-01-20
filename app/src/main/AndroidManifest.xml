@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -31,6 +32,22 @@
                 android:value=".home_page" />
         </activity>
         <activity android:name=".SignUp"></activity>
+        <activity android:name=".sell_item">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inst_list" />
+        </activity>
+        <activity android:name=".inst_view_user">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".user_items" />
+        </activity>
+        <activity android:name=".user_items">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Inst_list" />
+        </activity>
+        <activity android:name=".RequestsActivity"></activity>
         <activity
             android:name=".WelcomeActivity"
             android:parentActivityName=".LoginActivity" />

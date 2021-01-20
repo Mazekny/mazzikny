@@ -13,8 +13,11 @@ public class ProfileCard implements Serializable {
     private String phoneNumber;
     private String address;
     private String exp;
+    private String rating;
+    private String id;
+    private int sentFlag;
 
-    public ProfileCard(int userImage, String userName, String userInstrument, String userProf, String fbLink, String twLink, String email, String phoneNumber, String address, String exp) {
+    public ProfileCard(String id, int userImage, String userName, String userInstrument, String userProf, String fbLink, String twLink, String email, String phoneNumber, String address, String exp, String rating) {
         this.userImage = userImage;
         this.userName = userName;
         this.userInstrument = userInstrument;
@@ -25,6 +28,8 @@ public class ProfileCard implements Serializable {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.exp = exp;
+        this.rating = rating;
+        this.id = id;
     }
 
     public int getUserImage() {
@@ -65,5 +70,23 @@ public class ProfileCard implements Serializable {
 
     public String getExp() {
         return exp;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+
+    public void setSentFlag(int flag)
+    {
+        this.sentFlag = flag;
+    }
+    public int getSentFlag()
+    {
+        return sentFlag;
     }
 }

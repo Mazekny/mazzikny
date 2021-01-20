@@ -3,6 +3,7 @@ package com.example.mazzikny;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
@@ -22,7 +23,6 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.
     public interface OnItemClickListener
     {
         void onItemClick(int position);
-
     }
     public void setOnItemClickListener(OnItemClickListener listener)
     {
@@ -34,6 +34,7 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.
         public ImageView mImageView;
         public TextView mTextView1;
         public TextView mTextView2;
+        public Button connectButton;
         public TextView mTextView3;
 
         public ExampleViewHolder (View itemView, OnItemClickListener listener)
@@ -49,10 +50,10 @@ public class ProfileListAdapter extends RecyclerView.Adapter<ProfileListAdapter.
                 public void onClick(View v) {
                     if (listener != null)
                     {
-                        int postion = getAdapterPosition();
-                        if (postion != RecyclerView.NO_POSITION)
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION)
                         {
-                            listener.onItemClick(postion);
+                            listener.onItemClick(position);
                         }
                     }
                 }
