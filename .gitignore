@@ -14,3 +14,4 @@
 .cxx
 ./mobile-apps-nodejs-skeleton/routes/admin-service.json
 ./app/google-service.json
+./apikey.properties

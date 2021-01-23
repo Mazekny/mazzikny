@@ -1,5 +1,6 @@
 package com.example.mazzikny;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -24,6 +25,9 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.gson.Gson;
@@ -45,6 +49,7 @@ public class SignUp extends AppCompatActivity {
     FirebaseUser user;
     Button signUp ;
     Button clickHere ;
+    FirebaseAuth fAuth;
     //Spinner countrySpinner;
     EditText location ;
     EditText name  ;
@@ -153,7 +158,17 @@ public class SignUp extends AppCompatActivity {
                 // intent.putExtra("gender",uProf);
                 try {
                     getUserDetails();
-                    getUserInfo();
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    try {
+                        getUserInfo();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -175,6 +190,8 @@ public class SignUp extends AppCompatActivity {
         final RequestQueue queue = Volley.newRequestQueue(this);
         final String checkAppIDURL = "http://10.0.2.2:3000";
         JSONObject obj = new JSONObject();
+        //obj.put("uid", user.getUid());
+        obj.put("name", uName);
         obj.put("email", uEmail);
         obj.put("facebook", uFacebook);
         obj.put("twitter", uTwitter);
@@ -182,18 +199,15 @@ public class SignUp extends AppCompatActivity {
         obj.put("instrument", uInstrument);
         obj.put("experience", uExperienceYears);
         obj.put("address", uLocation);
-        obj.put("name", uName);
         obj.put("prof", uProf);
-        obj.put("rating", "0");
-        obj.put("token", "");
-        user.getIdToken(true).addOnCompleteListener(task -> {
-            if (!task.isSuccessful()) {
-                Log.e(TAG, "Could not get authentication token.");
-//                Toast.makeText(profile.this, "Could not authenticate. Try again later.", Toast.LENGTH_SHORT).show();
-                return;
-            }
-            Log.d("Connection", "Got token");
-            String idToken = task.getResult().getToken();
+//        user.getIdToken(true).addOnCompleteListener(task -> {
+//            if (!task.isSuccessful()) {
+//                Log.e(TAG, "Could not get authentication token.");
+////                Toast.makeText(profile.this, "Could not authenticate. Try again later.", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
+//            Log.d("Connection", "Got token");
+//            String idToken = task.getResult().getToken();
             JsonObjectRequest getUserDetails = new JsonObjectRequest(Request.Method.POST,
                     checkAppIDURL + "/setUserDetails", obj,
                     new Response.Listener<JSONObject>() {
@@ -214,7 +228,7 @@ public class SignUp extends AppCompatActivity {
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("Authorization", "Token " + idToken);
+//                    params.put("Authorization", "Token " + idToken);
                     params.put("Content-Type", "application/json");
                     return params;
                 }
@@ -244,7 +258,7 @@ public class SignUp extends AppCompatActivity {
 //                }
             };
             queue.add(getUserDetails);
-        });
+//        });
     }
     public void getUserDetails() throws JSONException {
         final RequestQueue queue = Volley.newRequestQueue(this);
@@ -279,6 +293,17 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
+                        try {
+                            getUserInfo();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+//                        try {
+//                            getUserInfo();
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
 //                        msgResponse.setText(response.toString());
 //                        hideProgressDialog();
                     }
@@ -287,6 +312,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
+
 //                hideProgressDialog();
             }
         }) {

@@ -117,7 +117,7 @@ public class Inst_list extends AppCompatActivity {
 
                 for(int j=0; j<items.size();j++)
                 {
-                    ItemsModel itemsModel=new ItemsModel(items.get(j), prices.get(j), desc.get(j), sellers.get(j), ids.get(j), R.drawable.clarinet);
+                    ItemsModel itemsModel=new ItemsModel(items.get(j), prices.get(j), desc.get(j), sellers.get(j), ids.get(j), R.drawable.instrument);
                     itemslist.add(itemsModel);
                 }
 

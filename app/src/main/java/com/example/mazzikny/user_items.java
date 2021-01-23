@@ -43,7 +43,7 @@ public class user_items extends AppCompatActivity {
 
     GridView gridView;
 
-    int images[]={R.drawable.clarinet};//,R.drawable.drum,R.drawable.flute,R.drawable.guitar,R.drawable.piano,R.drawable.trumpet};
+    int images[]={R.drawable.instrument};//,R.drawable.drum,R.drawable.flute,R.drawable.guitar,R.drawable.piano,R.drawable.trumpet};
 
     List<ItemsModel>itemslist=new ArrayList<>();
 

@@ -30,6 +30,7 @@ public class home_page extends AppCompatActivity {
         homeList.add(new Item("Requests",R.drawable.notification));
         homeList.add(new Item("Store",R.drawable.store));
         homeList.add(new Item("Studio",R.drawable.studio2));
+        homeList.add(new Item("Interested Buyers",R.drawable.interestedbuyers));
 //        homeList.add(new Item("E-Learning",R.drawable.learn2));
         homeList.add(new Item("About",R.drawable.about));
 //        homeList.add(new Item("Settings",R.drawable.settings2));
@@ -68,6 +69,10 @@ public class home_page extends AppCompatActivity {
                 }
                 else if (item.getbuttonName().equals("Requests")) {
                     Intent intent = new Intent(getApplicationContext(), RequestsActivity.class);
+                    startActivity(intent);
+                }
+                else if (item.getbuttonName().equals("Interested Buyers")) {
+                    Intent intent = new Intent(getApplicationContext(), interested_users.class);
                     startActivity(intent);
                 }
                 else if (item.getbuttonName().equals("About")){

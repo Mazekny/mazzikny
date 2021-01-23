@@ -112,7 +112,7 @@ public class MyConnections extends AppCompatActivity {
             for (int i = 0; i < userArray.length(); i++)
             {
                 msg = userArray.getJSONObject(i);
-                list.add(new ProfileCard(msg.getString("id"), R.drawable.dp1, msg.getString("name"), msg.getString("instrument"), msg.getString("prof"), msg.getString("facebook"), msg.getString("twitter"), msg.getString("email"), msg.getString("phone_number"), msg.getString("address"), msg.getString("exp"), msg.getString("rating")));
+                list.add(new ProfileCard(msg.getString("id"), R.drawable.dp1, msg.getString("name"), msg.getString("instrument"), msg.getString("prof"), msg.getString("facebook"), msg.getString("twitter"), msg.getString("email"), msg.getString("phone_number"), msg.getString("address"), msg.getString("exp"), msg.getString("likes"), msg.getString("dislikes")));
             }
             adapter = new ProfileListAdapter(list);
 

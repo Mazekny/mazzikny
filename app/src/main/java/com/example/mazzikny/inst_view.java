@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,6 +25,9 @@ import com.google.firebase.auth.FirebaseUser;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class inst_view extends AppCompatActivity {
 
@@ -41,9 +45,13 @@ public class inst_view extends AppCompatActivity {
 
     String like;
     String dislike;
+    String sellerToken;
+
+    private static final String TAG = "inst_view_notify";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inst_view);
 
@@ -57,6 +65,7 @@ public class inst_view extends AppCompatActivity {
         likes=findViewById(R.id.rating_likes);
         dislikes=findViewById(R.id.rating_dislikes);
         like=null;
+        sellerToken=null;
         user = FirebaseAuth.getInstance().getCurrentUser();
         dislike=null;
 
@@ -85,6 +94,7 @@ public class inst_view extends AppCompatActivity {
                                 JSONObject oneObject = response.getJSONObject(i);
                                 like=oneObject.getString("likes");
                                 dislike=oneObject.getString("dislikes");
+                                sellerToken=oneObject.getString("token");
                             } catch (JSONException e) {
                                 Log.e("oops", e.toString());
                             }
@@ -113,9 +123,27 @@ public class inst_view extends AppCompatActivity {
 
 
         button.setOnClickListener(view->{
+//            user.getIdToken(true).addOnCompleteListener(task -> {
+//                if (!task.isSuccessful()) {
+//                    Log.e(TAG, "Could not get authentication token.");
+//                    Toast.makeText(inst_view.this, "Could not authenticate. Try again later.", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                Log.d("Connection", "Got token");
+//                String idToken = task.getResult().getToken();
+            RequestQueue queue9 = Volley.newRequestQueue(this);
+            String URL = "http://10.0.2.2:3000/interested?seller="+seller+"&buyer="+user.getUid()+"&item="+item.getName();
+            StringRequest makeinterested = new StringRequest(Request.Method.GET, URL,
+                    response -> {
+                        Log.e("Rest Response", response);
+                    },
+                    error -> {
+                        Log.e("Rest Response", error.toString());
+                    });
 
+            queue9.add(makeinterested);
 
-            //send notification to seller
+            Toast.makeText(inst_view.this, "Notification Sent!", Toast.LENGTH_SHORT).show();
         });
 
         button1.setOnClickListener(view->{

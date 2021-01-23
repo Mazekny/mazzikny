@@ -16,6 +16,11 @@ import android.view.View;
 import android.widget.SearchView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -31,15 +36,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class SearchConnections extends AppCompatActivity {
     private static final String TAG = "AuthenticatedAddition";
     private ProfileListAdapter adapter;
-    private ArrayList<ProfileCard> exampleList;
     private RecyclerView recyclerView;
     private TextView textView;
     FirebaseUser user;
+    RecyclerView.LayoutManager layoutManager;
+    private ArrayList<ProfileCard> list = new ArrayList<>();
 
     private final String apiURL = "http://10.0.2.2:3000/getAllUsers";
     @Override
@@ -50,29 +58,12 @@ public class SearchConnections extends AppCompatActivity {
 
         textView = findViewById(R.id.textView3);
 
-//        new getAllUsers().execute(apiURL);
-        try {
-            exampleList = new getAllUsers().execute(apiURL).get();
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
-
         recyclerView = findViewById(R.id.connections_list);
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        adapter = new ProfileListAdapter(exampleList);
+        layoutManager = new LinearLayoutManager(this);
 
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+        getPending();
 
-        adapter.setOnItemClickListener(new ProfileListAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int position) {
-                Intent intent = new Intent(SearchConnections.this, userProfile.class);
-                intent.putExtra("user", exampleList.get(position));
-                startActivity(intent);
-            }
-        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
@@ -83,6 +74,7 @@ public class SearchConnections extends AppCompatActivity {
         }
         return true;
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -127,49 +119,70 @@ public class SearchConnections extends AppCompatActivity {
     }
 
 
-
-    private class getAllUsers extends AsyncTask<String, Void, ArrayList<ProfileCard>>
-    {
-        HttpURLConnection http;
-        JSONArray apiIn;
-        JSONObject msg;
-        StringBuffer consoleOut = new StringBuffer();
-        URL url;
-        ArrayList<ProfileCard> list = new ArrayList<>();
-
-        @Override
-        protected ArrayList<ProfileCard> doInBackground(String... strings) {
-            try {
-                url = new URL(strings[0]);
-                http = (HttpURLConnection) url.openConnection();
-                http.setRequestMethod("GET");
-                http.connect();
-
-                if (http.getResponseCode() == 200)
-                {
-                    InputStream stream = new BufferedInputStream(http.getInputStream());
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(stream));
-                    StringBuilder apiStream = new StringBuilder();
-                    String inputString;
-
-                    while ((inputString = bufferedReader.readLine()) != null)
-                    {
-                        apiStream.append(inputString);
-                    }
-                    apiIn = new JSONArray(apiStream.toString());
-                    if(apiIn.length() > 0)
-                    {
-                        for (int i = 0; i < apiIn.length(); i++)
-                        {
-                            msg = apiIn.getJSONObject(i);
-                            list.add(new ProfileCard(msg.getString("id"), R.drawable.dp1, msg.getString("name"), msg.getString("instrument"), msg.getString("prof"), msg.getString("facebook"), msg.getString("twitter"), msg.getString("email"), msg.getString("phone_number"), msg.getString("address"), msg.getString("exp"), msg.getString("rating")));
-                        }
-                    }
-                }
-            } catch (IOException | JSONException e) {
-                e.printStackTrace();
+    public void getPending() {
+        final RequestQueue queue = Volley.newRequestQueue(this);
+        final String checkAppIDURL = "http://10.0.2.2:3000";
+        user.getIdToken(true).addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e(TAG, "Could not get authentication token.");
+//                Toast.makeText(profile.this, "Could not authenticate. Try again later.", Toast.LENGTH_SHORT).show();
+                return;
             }
-            return list;
+            Log.d("Connection", "Got token");
+            String idToken = task.getResult().getToken();
+            StringRequest getUserDetails = new StringRequest(Request.Method.POST,
+                    checkAppIDURL + "/getAllUsers",
+                    response -> {
+                        System.out.println(response);
+                        try {
+                            getUserDetailsJSON(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }, error -> {
+                System.out.println(error);
+            }
+            ) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("Authorization", "Token " + idToken);
+                    return params;
+                }
+            };
+
+            queue.add(getUserDetails);
+        });
+    }
+
+    public void getUserDetailsJSON(String response) throws JSONException {
+        JSONObject obj = new JSONObject(response);
+        try {
+            JSONArray userArray = obj.getJSONArray("result");
+            JSONObject msg;// = userArray.getJSONObject(0);
+            int sentFlag;
+            for (int i = 0; i < userArray.length(); i++)
+            {
+                msg = userArray.getJSONObject(i);
+                list.add(new ProfileCard(msg.getString("id"), R.drawable.dp1, msg.getString("name"), msg.getString("instrument"), msg.getString("prof"), msg.getString("facebook"), msg.getString("twitter"), msg.getString("email"), msg.getString("phone_number"), msg.getString("address"), msg.getString("exp"), msg.getString("likes"), msg.getString("dislikes")));
+            }
+            adapter = new ProfileListAdapter(list);
+
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setAdapter(adapter);
+
+            adapter.setOnItemClickListener(new ProfileListAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    Intent intent = new Intent(SearchConnections.this, userProfile.class);
+                    intent.putExtra("user", list.get(position));
+                    startActivity(intent);
+                }
+            });
+
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
+
 }
